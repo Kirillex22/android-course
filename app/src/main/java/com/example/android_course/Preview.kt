@@ -17,10 +17,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 
@@ -64,7 +66,7 @@ fun DrawPreview(
                 .padding(top = 60.dp)
                 .align(Alignment.CenterHorizontally)
         ) {
-            Text(text = "Choose your hero", color = Color.White)
+            Text(text = "Choose your hero", color = Color.White, fontSize = 28.sp)
         }
 
         Box(
@@ -72,18 +74,27 @@ fun DrawPreview(
                 .align(Alignment.CenterHorizontally)
                 .width(300.dp)
         ) {
+
             LazyRow(
                 state = listState,
                 flingBehavior = rememberSnapFlingBehavior(lazyListState = listState),
                 horizontalArrangement = Arrangement.spacedBy(30.dp),
                 modifier = modifier
-                    .padding(top = 65.dp, bottom = 30.dp)
+                    .padding(top = 100.dp, bottom = 30.dp)
                     .fillMaxSize()
+                    .scale(1.15f)
             ) {
                 items(characters) { character ->
-                    DrawCharacterPreview(character, navController, modifier)
+                    DrawCharacterPreview(
+                        character,
+                        navController,
+                        modifier
+                       )
                 }
             }
         }
     }
 }
+
+
+

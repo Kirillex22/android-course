@@ -20,4 +20,3 @@ val CHARACTERS = listOf(
     )
 )
 
-

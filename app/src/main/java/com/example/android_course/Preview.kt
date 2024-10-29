@@ -15,6 +15,8 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
@@ -36,7 +38,6 @@ fun DrawPreview(
 
     Column(
         modifier = modifier
-            .fillMaxSize()
             .background(
                 brush = Brush.linearGradient(
                     colors = listOf(
@@ -46,6 +47,7 @@ fun DrawPreview(
                     ), start = Offset(666.0f, 666.0f)
                 )
             )
+            .fillMaxSize()
     ) {
         Row(
             modifier
@@ -63,33 +65,30 @@ fun DrawPreview(
 
         Row(
             modifier
-                .padding(top = 60.dp)
                 .align(Alignment.CenterHorizontally)
+                .padding(top = 60.dp)
         ) {
             Text(text = "Choose your hero", color = Color.White, fontSize = 28.sp)
         }
 
-        Box(
-            modifier
-                .align(Alignment.CenterHorizontally)
-                .width(300.dp)
-        ) {
-
+        Box {
+            val visibleItems = remember { mutableStateListOf<Character>() }
             LazyRow(
                 state = listState,
                 flingBehavior = rememberSnapFlingBehavior(lazyListState = listState),
-                horizontalArrangement = Arrangement.spacedBy(30.dp),
+                horizontalArrangement = Arrangement.spacedBy(5.dp),
                 modifier = modifier
-                    .padding(top = 100.dp, bottom = 30.dp)
+                    .padding(top = 120.dp, bottom = 30.dp, start = 30.dp, end = 30.dp)
                     .fillMaxSize()
-                    .scale(1.15f)
+                    .scale(1.1f)
             ) {
                 items(characters) { character ->
                     DrawCharacterPreview(
                         character,
                         navController,
-                        modifier
-                       )
+                        modifier,
+                        visibleItems
+                    )
                 }
             }
         }

@@ -20,3 +20,5 @@ val CHARACTERS = listOf(
     )
 )
 
+var S_W = 0
+var S_H = 0

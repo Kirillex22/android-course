@@ -1,5 +1,6 @@
 package com.example.android_course.network
 
+import com.example.android_course.BuildConfig
 import com.example.android_course.model.CharacterResponse
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -34,8 +35,8 @@ interface MarvelApiService {
 }
 
 object RequestInterceptor : Interceptor {
-    private val public_key = "465eb4561921809caed3aa7c5f786dd4"
-    private val private_key = "c936a0c935e0d983618d67bca35e72aa99ba4016"
+    private val public_key = BuildConfig.MARVEL_API_PUBLIC_KEY
+    private val private_key = BuildConfig.MARVEL_API_PRIVATE_KEY
     private val ts = "1"
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()

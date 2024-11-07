@@ -2,7 +2,15 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.google.devtools.ksp").version("1.6.10-1.0.4")
+    id ("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
+
+secrets {
+    defaultPropertiesFileName = "secrets.defaults.properties"
+    ignoreList.add("keyToIgnore")
+    ignoreList.add("sdk.*")
+}
+
 android {
     namespace = "com.example.android_course"
     compileSdk = 34
@@ -50,7 +58,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

@@ -1,4 +1,4 @@
-package com.example.android_course
+package com.example.android_course.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
@@ -27,15 +27,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
+import com.example.android_course.CharacterViewModel
+import com.example.android_course.MARVEL_LOGO_LINK
+import com.example.android_course.model.Character
 
 @Composable
 fun DrawPreview(
-    characters: List<Character>,
     navController: NavHostController,
     listState: LazyListState,
-    modifier: Modifier
+    modifier: Modifier,
+    characters: List<Character>,
+    chViewModel: CharacterViewModel
 ) {
-
     Column(
         modifier = modifier
             .background(
@@ -87,7 +90,8 @@ fun DrawPreview(
                         character,
                         navController,
                         modifier,
-                        visibleItems
+                        visibleItems,
+                        chViewModel
                     )
                 }
             }
